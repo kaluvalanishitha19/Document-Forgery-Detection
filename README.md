@@ -2,13 +2,13 @@
 # Document Forgery Detection System
 Nishitha Reddy Kaluvala – U83727321
 Laasya Chenchala – U12533113
-# Project Overview
+## Project Overview
 This project is a Document Forgery Detection System designed to identify two major types of forgeries:
 1.	Signature Forgery Detection using an Autoencoder model (optionally supported by GAN-based synthetic data generation).
 2.	Copy-Move Forgery Detection using a traditional block-based analysis approach.
 Additionally, it includes a comprehensive Filter and Analysis module for preprocessing, text analysis, and signature isolation. The system incorporates trustworthy design principles — ensuring robustness, reliability, and transparency — by performing well across document distortions, using interpretable methods (reconstruction error, offset consistency), and modular architecture.
  
-# Project Modules
+## Project Modules
 1. Signature Forgery Detection
 This module determines whether a given signature is genuine or forged by measuring how accurately an Autoencoder can reconstruct the input image. The Autoencoder is trained solely on genuine signature samples so that it learns the typical patterns and structures found in authentic signatures. During detection, a test signature is passed through the model. If the reconstruction error (the difference between the input and the output) is above a certain threshold, it is considered forged.
 To improve training and expand the dataset, a Generative Adversarial Network (GAN) can be optionally used to generate synthetic genuine-looking signatures. This helps in cases where real signature samples are limited. The GAN learns from real signatures and generates fake ones that look realistic. These synthetic images can then be added to the training data for the Autoencoder.
@@ -33,21 +33,21 @@ In the OCR pipeline, the OCR.py script uses Tesseract OCR to extract readable te
 The Text.py module detects and segments text regions within a document. It uses binary thresholding and morphological dilation to merge nearby characters into text blocks. Contour detection is then used to locate and crop these regions. This allows separate fields like "Name," "DOB," and "Signature" to be analyzed individually.
 These preprocessing steps improve robustness by cleaning the input image, reducing background noise, and isolating specific features for targeted analysis, which increases the reliability and transparency of detection.
  
-# How to Run the Project
+## How to Run the Project
 A. Signature Detection
-# Optional: Generate synthetic signatures
+Optional: Generate synthetic signatures
 python gan_train.py
 
-# Train Autoencoder
+Train Autoencoder
 python autoencoder_train.py
 
-# Detect forgery on test images
+ Detect forgery on test images
 python detect_signature.py
 B. Copy-Move Detection
-# Run GUI for copy-move analysis
+Run GUI for copy-move analysis
 python main_GUI.py
  
-Dependencies
+## Dependencies
 •	Python 3.x
 •	PyTorch
 •	torchvision
@@ -55,7 +55,7 @@ Dependencies
 •	PIL (Pillow)
 •	numpy
 •	pytesseract (for OCR)
- Notes
+## Notes
 •	Make sure all required folders (e.g., data/genuine/class1, models, generated) exist.
 •	Ensure that pytesseract is correctly installed and configured for OCR.
 •	For best GAN performance, train for at least 50+ epochs.
